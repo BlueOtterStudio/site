@@ -1,0 +1,1557 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Orange — Stop Juggling 5 Apps. Learn Chinese in One.</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --orange: #ff6b00;
+                --orange-dark: #e05800;
+                --orange-light: #ff8c2a;
+                --orange-pale: #fff3e8;
+                --orange-50: #fff8f2;
+                --black: #0f0f0f;
+                --gray: #6b6b6b;
+                --gray-light: #f5f4f2;
+                --white: #ffffff;
+                --radius: 20px;
+                --radius-sm: 12px;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+                background: var(--white);
+                color: var(--black);
+                overflow-x: hidden;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                text-rendering: optimizeLegibility;
+            }
+
+            /* ── NAV ── */
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 100;
+                padding: 1rem 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: rgba(255, 255, 255, 0.92);
+                backdrop-filter: blur(20px) saturate(1.2);
+                -webkit-backdrop-filter: blur(20px) saturate(1.2);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            }
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                text-decoration: none;
+            }
+            .nav-logo-img {
+                width: 32px;
+                height: 32px;
+                display: block;
+            }
+            .nav-logo-text {
+                font-family: "Outfit", sans-serif;
+                font-weight: 800;
+                font-size: 1.35rem;
+                color: var(--orange);
+                letter-spacing: -0.02em;
+            }
+            .nav-logo-text span {
+                color: var(--black);
+                font-weight: 700;
+            }
+            .nav-cta {
+                background: var(--orange);
+                color: var(--white);
+                border: none;
+                border-radius: 100px;
+                padding: 0.6rem 1.6rem;
+                font-family: "Inter", sans-serif;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                text-decoration: none;
+                transition:
+                    background 0.2s,
+                    transform 0.15s;
+                white-space: nowrap;
+            }
+            .nav-cta:hover {
+                background: var(--orange-dark);
+                transform: scale(1.03);
+            }
+
+            /* ── HERO ── */
+            .hero {
+                min-height: 100vh;
+                background: var(--black);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 5rem 1.5rem 1.25rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .hero-app-icon {
+                width: 88px;
+                height: 88px;
+                margin-bottom: 2rem;
+                animation: fadeUp 0.7s ease both;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                background: rgba(255, 107, 0, 0.15);
+                border: 1px solid rgba(255, 107, 0, 0.3);
+                color: #ffb070;
+                border-radius: 100px;
+                padding: 0.45rem 1.2rem;
+                font-size: 0.85rem;
+                font-weight: 500;
+                margin-bottom: 1.75rem;
+                letter-spacing: 0.02em;
+                animation: fadeUp 0.7s 0.08s ease both;
+                position: relative;
+                z-index: 1;
+                white-space: nowrap;
+            }
+            .badge-dot {
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                background: var(--orange);
+                animation: pulse-dot 2.5s ease-in-out infinite;
+                flex-shrink: 0;
+            }
+
+            .hero h1 {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(2.4rem, 6.5vw, 5rem);
+                font-weight: 800;
+                line-height: 1.15;
+                color: var(--white);
+                letter-spacing: -0.03em;
+                max-width: 800px;
+                position: relative;
+                z-index: 1;
+                animation: fadeUp 0.7s 0.15s ease both;
+            }
+            .hero h1 em {
+                font-style: normal;
+                color: var(--orange-light);
+            }
+
+            .hero-sub {
+                margin-top: 1.5rem;
+                font-size: clamp(1rem, 2vw, 1.15rem);
+                color: rgba(255, 255, 255, 0.6);
+                max-width: 560px;
+                line-height: 1.7;
+                font-weight: 400;
+                animation: fadeUp 0.7s 0.25s ease both;
+                position: relative;
+                z-index: 1;
+            }
+
+            .hero-btns {
+                margin-top: 2rem;
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                animation: fadeUp 0.7s 0.35s ease both;
+                position: relative;
+                z-index: 1;
+            }
+
+            .btn-store {
+                display: flex;
+                align-items: center;
+                gap: 0.7rem;
+                padding: 0.85rem 1.6rem;
+                border-radius: 14px;
+                text-decoration: none;
+                font-family: "Inter", sans-serif;
+                font-weight: 500;
+                font-size: 0.9rem;
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s;
+                min-width: 185px;
+                justify-content: center;
+                line-height: 1.2;
+            }
+            .btn-store:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+            }
+
+            .btn-apple {
+                background: var(--white);
+                color: var(--black);
+            }
+            .btn-google {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: var(--white);
+            }
+            .btn-store svg {
+                width: 22px;
+                height: 22px;
+                flex-shrink: 0;
+            }
+            .btn-store-text {
+                text-align: left;
+            }
+            .btn-store-text small {
+                display: block;
+                font-size: 0.68rem;
+                opacity: 0.65;
+                font-weight: 400;
+                letter-spacing: 0.01em;
+            }
+            .btn-store-text strong {
+                display: block;
+                font-size: 0.95rem;
+                font-weight: 600;
+            }
+
+            .btn-highlighted {
+                box-shadow:
+                    0 0 0 3px var(--orange),
+                    0 10px 30px rgba(255, 107, 0, 0.4) !important;
+                animation: pulse-glow 2.5s ease-in-out infinite;
+            }
+
+            .hero-stats {
+                margin-top: 2rem;
+                display: flex;
+                gap: 2.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                animation: fadeUp 0.7s 0.45s ease both;
+                position: relative;
+                z-index: 1;
+            }
+            .hero-stat {
+                text-align: center;
+            }
+            .hero-stat strong {
+                display: block;
+                font-family: "Outfit", sans-serif;
+                font-size: 1.7rem;
+                font-weight: 800;
+                color: var(--white);
+                letter-spacing: -0.02em;
+            }
+            .hero-stat span {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.45);
+                margin-top: 0.2rem;
+                display: block;
+            }
+
+            .scroll-hint {
+                margin-top: 1.25rem;
+                color: rgba(255, 255, 255, 0.3);
+                font-size: 0.8rem;
+                letter-spacing: 0.12em;
+                animation:
+                    fadeUp 0.7s 0.6s ease both,
+                    bounce 2.5s 2s ease-in-out infinite;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.4rem;
+                position: relative;
+                z-index: 1;
+            }
+            .scroll-arrow-svg {
+                width: 18px;
+                height: 18px;
+                opacity: 0.6;
+            }
+
+            /* ── SOCIAL PROOF BAR ── */
+            .social-proof {
+                background: var(--white);
+                border-bottom: 1px solid #f0ede8;
+                padding: 1.75rem 1.5rem;
+                text-align: center;
+            }
+            .social-proof-inner {
+                max-width: 900px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 1.25rem;
+                flex-wrap: wrap;
+            }
+            .social-stars {
+                display: flex;
+                gap: 3px;
+                align-items: center;
+            }
+            .social-stars svg {
+                width: 20px;
+                height: 20px;
+                flex-shrink: 0;
+            }
+            .social-text {
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: var(--black);
+            }
+            .social-text strong {
+                color: var(--orange);
+            }
+            .social-avatars {
+                display: flex;
+                align-items: center;
+            }
+            .social-avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: 2px solid var(--white);
+                margin-left: -10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.75rem;
+                font-weight: 700;
+                color: var(--white);
+                flex-shrink: 0;
+            }
+            .social-avatar:first-child {
+                margin-left: 0;
+            }
+            .social-avatar.a1 {
+                background: #ff6b00;
+                z-index: 5;
+            }
+            .social-avatar.a2 {
+                background: #ff8c2a;
+                z-index: 4;
+            }
+            .social-avatar.a3 {
+                background: #ffb347;
+                z-index: 3;
+            }
+            .social-avatar.a4 {
+                background: #ffd08a;
+                z-index: 2;
+                color: var(--orange);
+            }
+
+            /* ── MARQUEE STRIP ── */
+            .strip {
+                background: var(--orange);
+                padding: 1rem 0;
+                overflow: hidden;
+                position: relative;
+            }
+            .strip::before,
+            .strip::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 80px;
+                z-index: 2;
+                pointer-events: none;
+            }
+            .strip::before {
+                left: 0;
+                background: linear-gradient(
+                    to right,
+                    var(--orange),
+                    transparent
+                );
+            }
+            .strip::after {
+                right: 0;
+                background: linear-gradient(
+                    to left,
+                    var(--orange),
+                    transparent
+                );
+            }
+            .strip-inner {
+                display: flex;
+                gap: 3rem;
+                animation: marquee 25s linear infinite;
+                width: max-content;
+            }
+            .strip-item {
+                font-family: "Inter", sans-serif;
+                font-size: 0.85rem;
+                font-weight: 400;
+                color: rgba(255, 255, 255, 0.9);
+                white-space: nowrap;
+                letter-spacing: 0.01em;
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                flex-shrink: 0;
+                font-style: italic;
+            }
+            .strip-item::after {
+                content: "★";
+                opacity: 0.5;
+                font-size: 0.6rem;
+            }
+
+            /* ── SECTION COMMON ── */
+            section {
+                padding: 6rem 1.5rem;
+            }
+            .section-label {
+                font-size: 0.8rem;
+                font-weight: 600;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                color: var(--orange);
+                margin-bottom: 1rem;
+            }
+            .section-title {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(1.9rem, 4.5vw, 3rem);
+                font-weight: 800;
+                line-height: 1.2;
+                letter-spacing: -0.02em;
+                color: var(--black);
+                max-width: 650px;
+            }
+            .section-title em {
+                font-style: normal;
+                color: var(--orange);
+            }
+
+            /* ── APP COMPARISON ── */
+            .comparison {
+                background: var(--white);
+                text-align: center;
+                padding: 6rem 2rem;
+            }
+            .comparison-container {
+                max-width: 750px;
+                margin: 0 auto;
+            }
+            .comparison-heading {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+                font-weight: 700;
+                line-height: 1.25;
+                color: var(--black);
+                margin-bottom: 2.5rem;
+                letter-spacing: -0.02em;
+            }
+            .comparison-icons {
+                display: flex;
+                gap: 1.25rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 0.5rem;
+            }
+            .comp-icon {
+                width: 84px;
+                height: 84px;
+                background: var(--gray-light);
+                border-radius: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.2s;
+            }
+            .comp-icon img {
+                width: 66px;
+                height: 66px;
+                object-fit: contain;
+            }
+            .comp-icon:hover {
+                transform: translateY(-4px);
+            }
+            .comparison-arrows {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 0.75rem;
+                color: var(--orange);
+                overflow: visible;
+            }
+            .comparison-arrows svg {
+                width: 100%;
+                max-width: 500px;
+                height: 70px;
+                opacity: 0.4;
+            }
+            .comparison-center-arrow {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 0.75rem;
+                color: var(--orange);
+            }
+            .comparison-center-arrow svg {
+                width: 28px;
+                height: 28px;
+                opacity: 0.6;
+            }
+            .comparison-orange {
+                margin-bottom: 1rem;
+            }
+            .comparison-orange-icon {
+                width: 120px;
+                height: 120px;
+                filter: drop-shadow(0 4px 14px rgba(255, 107, 0, 0.25));
+            }
+            .comparison-sub {
+                font-size: 1.1rem;
+                color: var(--gray);
+                font-weight: 400;
+            }
+            .comparison-sub strong {
+                color: var(--orange);
+                font-weight: 600;
+            }
+
+            /* ── FEATURES ── */
+            .features {
+                background: var(--gray-light);
+            }
+            .features-container {
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            .features-header {
+                text-align: center;
+                margin-bottom: 3.5rem;
+            }
+            .features-header .section-title {
+                margin: 0 auto;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.25rem;
+            }
+
+            .feature-card {
+                background: var(--white);
+                border-radius: var(--radius);
+                padding: 2.25rem 1.75rem;
+                transition:
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
+                opacity: 0;
+                transform: translateY(24px);
+                min-height: 0;
+            }
+            .feature-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            }
+
+            .feature-icon {
+                width: 52px;
+                height: 52px;
+                background: var(--orange-pale);
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.25rem;
+                color: var(--orange);
+                flex-shrink: 0;
+            }
+            .feature-icon svg {
+                width: 24px;
+                height: 24px;
+                flex-shrink: 0;
+            }
+            .feature-card h3 {
+                font-family: "Outfit", sans-serif;
+                font-size: 1.15rem;
+                font-weight: 700;
+                margin-bottom: 0.6rem;
+                color: var(--black);
+                line-height: 1.3;
+            }
+            .feature-card p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+                color: var(--gray);
+                font-weight: 400;
+            }
+
+            /* ── WHO SECTION ── */
+            .who {
+                background: var(--black);
+            }
+            .who-container {
+                max-width: 850px;
+                margin: 0 auto;
+                text-align: center;
+            }
+            .who .section-title {
+                color: var(--white);
+                margin: 0 auto 1rem;
+            }
+            .who-sub {
+                color: rgba(255, 255, 255, 0.55);
+                font-size: 1.05rem;
+                font-weight: 400;
+                margin-bottom: 3rem;
+                max-width: 550px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.7;
+            }
+            .who-pills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                justify-content: center;
+            }
+            .who-pill {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                color: rgba(255, 255, 255, 0.9);
+                border-radius: 100px;
+                padding: 0.65rem 1.5rem;
+                font-size: 0.93rem;
+                font-weight: 400;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+            }
+            .who-pill:hover {
+                background: rgba(255, 107, 0, 0.18);
+                border-color: rgba(255, 107, 0, 0.35);
+                color: var(--white);
+            }
+
+            /* ── FINAL CTA ── */
+            .cta-section {
+                padding: 4rem 1.5rem 2rem;
+                background: var(--black);
+            }
+            .cta-final {
+                background: var(--orange);
+                border-radius: var(--radius);
+                padding: 4.5rem 2rem;
+                text-align: center;
+                max-width: 850px;
+                margin: 0 auto;
+                position: relative;
+                overflow: hidden;
+            }
+            .cta-final::before {
+                content: "";
+                position: absolute;
+                top: -120px;
+                right: -120px;
+                width: 380px;
+                height: 380px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.07);
+            }
+            .cta-final::after {
+                content: "";
+                position: absolute;
+                bottom: -100px;
+                left: -100px;
+                width: 280px;
+                height: 280px;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.07);
+            }
+            .cta-final h2 {
+                font-family: "Outfit", sans-serif;
+                font-size: clamp(1.9rem, 4.5vw, 3rem);
+                font-weight: 800;
+                color: var(--white);
+                letter-spacing: -0.02em;
+                margin-bottom: 0.8rem;
+                position: relative;
+                z-index: 1;
+                line-height: 1.2;
+            }
+            .cta-final p {
+                color: rgba(255, 255, 255, 0.85);
+                font-size: 1.05rem;
+                font-weight: 400;
+                margin-bottom: 2.5rem;
+                position: relative;
+                z-index: 1;
+                max-width: 460px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.6;
+            }
+            .cta-btns {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                position: relative;
+                z-index: 1;
+            }
+            .btn-cta {
+                display: flex;
+                align-items: center;
+                gap: 0.65rem;
+                padding: 0.9rem 1.8rem;
+                border-radius: 14px;
+                text-decoration: none;
+                font-family: "Inter", sans-serif;
+                font-weight: 500;
+                font-size: 0.9rem;
+                transition:
+                    transform 0.2s,
+                    opacity 0.2s;
+                line-height: 1.2;
+            }
+            .btn-cta:hover {
+                transform: scale(1.04);
+            }
+            .btn-cta-white {
+                background: var(--white);
+                color: var(--black);
+            }
+            .btn-cta-dark {
+                background: rgba(0, 0, 0, 0.25);
+                color: var(--white);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            .btn-cta svg {
+                width: 22px;
+                height: 22px;
+                flex-shrink: 0;
+            }
+
+            .cta-free {
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.5);
+                margin-top: 1.5rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* ── FOOTER ── */
+            footer {
+                padding: 2.5rem 1.5rem 3rem;
+                text-align: center;
+                border-top: 1px solid #f0ede8;
+                background: var(--white);
+            }
+            .footer-logo-wrap {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+            .footer-logo-img {
+                width: 28px;
+                height: 28px;
+                display: block;
+            }
+            .footer-logo-text {
+                font-family: "Outfit", sans-serif;
+                font-weight: 800;
+                font-size: 1.2rem;
+                color: var(--orange);
+            }
+            .footer-tagline {
+                font-size: 0.9rem;
+                color: var(--gray);
+                font-weight: 400;
+                margin-bottom: 1.5rem;
+            }
+            .footer-links {
+                display: flex;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .footer-link {
+                font-size: 0.85rem;
+                font-weight: 500;
+                text-decoration: none;
+                color: var(--orange);
+                transition: color 0.2s;
+            }
+            .footer-link:hover {
+                color: var(--orange-dark);
+            }
+
+            /* ── ANIMATIONS ── */
+            @keyframes fadeUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(24px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            @keyframes bounce {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(8px);
+                }
+            }
+            @keyframes pulse-dot {
+                0%,
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                50% {
+                    opacity: 0.5;
+                    transform: scale(0.85);
+                }
+            }
+            @keyframes pulse-glow {
+                0%,
+                100% {
+                    box-shadow:
+                        0 0 0 3px var(--orange),
+                        0 10px 30px rgba(255, 107, 0, 0.4);
+                }
+                50% {
+                    box-shadow:
+                        0 0 0 5px rgba(255, 107, 0, 0.2),
+                        0 14px 40px rgba(255, 107, 0, 0.55);
+                }
+            }
+            @keyframes marquee {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-50%);
+                }
+            }
+
+            /* ── RESPONSIVE ── */
+            @media (max-width: 700px) {
+                .hero-stats {
+                    gap: 1.5rem;
+                }
+                nav {
+                    padding: 0.85rem 1rem;
+                }
+                .nav-cta {
+                    display: none;
+                }
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
+                .social-proof-inner {
+                    flex-direction: column;
+                    gap: 0.75rem;
+                }
+                .hero h1 {
+                    font-size: clamp(2.1rem, 8vw, 3rem);
+                }
+                .btn-store {
+                    min-width: 160px;
+                    padding: 0.8rem 1.2rem;
+                }
+                .hero-app-icon {
+                    width: 72px;
+                    height: 72px;
+                }
+                .hero {
+                    padding: 4rem 1.25rem 1.25rem;
+                }
+                .cta-final {
+                    padding: 3rem 1.5rem;
+                }
+                section {
+                    padding: 4rem 1.25rem;
+                }
+                .comp-icon {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 14px;
+                }
+                .comp-icon img {
+                    width: 46px;
+                    height: 46px;
+                }
+                .comparison {
+                    padding: 4rem 1.25rem;
+                }
+                .comparison-orange-icon {
+                    width: 96px;
+                    height: 96px;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                }
+            }
+        </style>
+        <base target="_blank" />
+    </head>
+    <body>
+        <!-- NAV -->
+        <nav>
+            <a href="#" class="nav-logo">
+                <img
+                    class="nav-logo-img"
+                    src="orangechaticon (1) (1).png"
+                    alt="Orange App Icon"
+                    width="32"
+                    height="32"
+                />
+                <span class="nav-logo-text">orange<span>.</span></span>
+            </a>
+            <a href="#download" class="nav-cta">Download Free</a>
+        </nav>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Stop Juggling 5 Apps<br /><em>to Learn Chinese.</em></h1>
+
+            <p class="hero-sub">Orange gives you everything you need!</p>
+
+            <div class="hero-btns" id="download">
+                <!-- Apple App Store Button -->
+                <a
+                    href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
+                    class="btn-store btn-apple"
+                    target="_blank"
+                    rel="noopener"
+                    id="btn-ios"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                        />
+                    </svg>
+                    <div class="btn-store-text">
+                        <small>Download on the</small>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <!-- Google Play Button -->
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
+                    class="btn-store btn-google"
+                    target="_blank"
+                    rel="noopener"
+                    id="btn-android"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.61-2.61-10.45 9.44zm-1.76-19.1c-.24.3-.38.73-.38 1.28v14.12c0 .55.14.98.39 1.28l.07.06 7.91-7.91v-.19L1.35 4.6l-.06.06h.13zm17.54 7.87l-2.21-1.28-2.93 2.93 2.93 2.93 2.23-1.28c.63-.37.63-.96 0-1.3h-.02zM4.16.22L16.25 7.2l-2.61 2.61L3.18.39A1.07 1.07 0 014.16.22z"
+                        />
+                    </svg>
+                    <div class="btn-store-text">
+                        <small>Get it on</small>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+            </div>
+
+            <div class="scroll-hint">
+                <span>Scroll to explore</span>
+                <svg
+                    class="scroll-arrow-svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <polyline points="6 9 12 15 18 9" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- SOCIAL PROOF BAR -->
+        <div class="social-proof">
+            <div class="social-proof-inner">
+                <div class="social-stars">
+                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                        <path
+                            d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
+                        />
+                    </svg>
+                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                        <path
+                            d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
+                        />
+                    </svg>
+                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                        <path
+                            d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
+                        />
+                    </svg>
+                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                        <path
+                            d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
+                        />
+                    </svg>
+                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                        <path
+                            d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
+                        />
+                    </svg>
+                </div>
+                <span class="social-text"
+                    >Rated <strong>4.9 ★</strong> by Chinese learners
+                    worldwide</span
+                >
+                <div class="social-avatars">
+                    <div class="social-avatar a1">J</div>
+                    <div class="social-avatar a2">M</div>
+                    <div class="social-avatar a3">L</div>
+                    <div class="social-avatar a4">S</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARQUEE STRIP -->
+        <div class="strip" aria-hidden="true">
+            <div class="strip-inner">
+                <span class="strip-item"
+                    >"Finished my first Chinese book thanks to Orange!"</span
+                >
+                <span class="strip-item"
+                    >"I make hundreds of flashcards in seconds — so
+                    convenient!"</span
+                >
+                <span class="strip-item"
+                    >"The AI breaks down any grammar I don't understand"</span
+                >
+                <span class="strip-item"
+                    >"Stroke order animations are incredibly useful"</span
+                >
+                <span class="strip-item"
+                    >"Passed HSK 4 with Orange's practice decks"</span
+                >
+                <span class="strip-item"
+                    >"Photo reader saved me — scanned menus instantly in
+                    China"</span
+                >
+                <span class="strip-item"
+                    >"My listening improved so much with the daily
+                    tracker"</span
+                >
+                <span class="strip-item"
+                    >"Bulk flashcards from my textbook notes = game
+                    changer"</span
+                >
+                <span class="strip-item"
+                    >"Finished my first Chinese book thanks to Orange!"</span
+                >
+                <span class="strip-item"
+                    >"I make hundreds of flashcards in seconds — so
+                    convenient!"</span
+                >
+                <span class="strip-item"
+                    >"The AI breaks down any grammar I don't understand"</span
+                >
+                <span class="strip-item"
+                    >"Stroke order animations are incredibly useful"</span
+                >
+                <span class="strip-item"
+                    >"Passed HSK 4 with Orange's practice decks"</span
+                >
+                <span class="strip-item"
+                    >"Photo reader saved me — scanned menus instantly in
+                    China"</span
+                >
+                <span class="strip-item"
+                    >"My listening improved so much with the daily
+                    tracker"</span
+                >
+                <span class="strip-item"
+                    >"Bulk flashcards from my textbook notes = game
+                    changer"</span
+                >
+            </div>
+        </div>
+
+        <!-- APP COMPARISON -->
+        <section class="comparison">
+            <div class="comparison-container">
+                <p class="section-label">Stop the juggle</p>
+                <h2 class="comparison-heading">
+                    Instead of juggling between<br />all these apps…
+                </h2>
+                <div class="comparison-icons">
+                    <div class="comp-icon">
+                        <img
+                            src="images (1).jpg"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                    <div class="comp-icon">
+                        <img
+                            src="images (1).png"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                    <div class="comp-icon">
+                        <img
+                            src="images (2).png"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                    <div class="comp-icon">
+                        <img
+                            src="images.jpg"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                    <div class="comp-icon">
+                        <img
+                            src="images.png"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                    <div class="comp-icon">
+                        <img
+                            src="unnamed.png"
+                            alt="Other app"
+                            width="66"
+                            height="66"
+                        />
+                    </div>
+                </div>
+                <div class="comparison-arrows">
+                    <svg
+                        viewBox="0 0 500 70"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M42 0 Q42 38 250 65" />
+                        <path d="M125 0 Q130 38 250 65" />
+                        <path d="M208 0 Q212 38 250 65" />
+                        <path d="M292 0 Q288 38 250 65" />
+                        <path d="M375 0 Q370 38 250 65" />
+                        <path d="M458 0 Q458 38 250 65" />
+                    </svg>
+                </div>
+                <div class="comparison-center-arrow">
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="12" y1="3" x2="12" y2="19" />
+                        <polyline points="5 13 12 21 19 13" />
+                    </svg>
+                </div>
+                <div class="comparison-orange">
+                    <img
+                        class="comparison-orange-icon"
+                        src="orangechaticon (1) (1).png"
+                        alt="Orange App Icon"
+                        width="120"
+                        height="120"
+                    />
+                </div>
+                <p class="comparison-sub">
+                    …Orange combines them all into <strong>one</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- FEATURES GRID -->
+        <section class="features">
+            <div class="features-container">
+                <div class="features-header">
+                    <p class="section-label">Everything you need</p>
+                    <h2 class="section-title">
+                        One app.<br /><em>All the tools.</em>
+                    </h2>
+                </div>
+                <div class="features-grid">
+                    <!-- AI Tutor -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                                />
+                                <path d="M9 9h6" />
+                                <path d="M9 13h3" />
+                            </svg>
+                        </div>
+                        <h3>AI Tutor</h3>
+                        <p>
+                            Get instant grammar help, pronunciation coaching,
+                            and full conversation practice — a native-level AI
+                            tutor available 24/7.
+                        </p>
+                    </div>
+
+                    <!-- Stroke Order -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 20h9" />
+                                <path
+                                    d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"
+                                />
+                            </svg>
+                        </div>
+                        <h3>Stroke Order</h3>
+                        <p>
+                            Animated guides for every character. Practice stroke
+                            sequence, tones, and meaning — never write a
+                            character wrong again.
+                        </p>
+                    </div>
+
+                    <!-- Smart Flashcards -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                <polyline points="2 17 12 22 22 17" />
+                                <polyline points="2 12 12 17 22 12" />
+                            </svg>
+                        </div>
+                        <h3>Smart Flashcards</h3>
+                        <p>
+                            Spaced repetition schedules reviews at the exact
+                            moment you're about to forget — study less, retain
+                            more, forever.
+                        </p>
+                    </div>
+
+                    <!-- Photo Reader -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                                />
+                                <circle cx="12" cy="13" r="4" />
+                            </svg>
+                        </div>
+                        <h3>Photo Reader</h3>
+                        <p>
+                            Point your camera at any Chinese text — menus,
+                            signs, textbooks. Orange reads it instantly and adds
+                            vocab to your deck.
+                        </p>
+                    </div>
+
+                    <!-- Listening Tracker -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                                <path
+                                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"
+                                />
+                            </svg>
+                        </div>
+                        <h3>Listening Tracker</h3>
+                        <p>
+                            Track your daily Chinese listening time
+                            automatically. Build real immersion habits and watch
+                            your progress grow week by week.
+                        </p>
+                    </div>
+
+                    <!-- HSK Decks -->
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path
+                                    d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                                />
+                            </svg>
+                        </div>
+                        <h3>HSK 1–6 Included</h3>
+                        <p>
+                            Jump in immediately with ready-to-study decks for
+                            all six HSK levels and 3,000+ built-in flashcards —
+                            no setup needed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO IT'S FOR -->
+        <section class="who">
+            <div class="who-container">
+                <p class="section-label" style="color: var(--orange-light)">
+                    Who it's for
+                </p>
+                <h2 class="section-title">
+                    Built for every kind<br />of Chinese learner.
+                </h2>
+                <p class="who-sub">
+                    Whether you're picking up your first characters or preparing
+                    for an HSK 6 exam — Orange meets you exactly where you are.
+                </p>
+                <div class="who-pills">
+                    <span class="who-pill">HSK Test Takers</span>
+                    <span class="who-pill">Self-Study Learners</span>
+                    <span class="who-pill">University Students</span>
+                    <span class="who-pill">Complete Beginners</span>
+                    <span class="who-pill">Advanced Speakers</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <div class="cta-section">
+            <div class="cta-final">
+                <h2>Ready to stop juggling<br />and start learning?</h2>
+                <p>
+                    Download Orange free today. Your first lesson is just one
+                    tap away.
+                </p>
+                <div class="cta-btns">
+                    <a
+                        href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
+                        class="btn-cta btn-cta-white"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                            />
+                        </svg>
+                        <div class="btn-store-text">
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </div>
+                    </a>
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
+                        class="btn-cta btn-cta-dark"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.61-2.61-10.45 9.44zm-1.76-19.1c-.24.3-.38.73-.38 1.28v14.12c0 .55.14.98.39 1.28l.07.06 7.91-7.91v-.19L1.35 4.6l-.06.06h.13zm17.54 7.87l-2.21-1.28-2.93 2.93 2.93 2.93 2.23-1.28c.63-.37.63-.96 0-1.3h-.02zM4.16.22L16.25 7.2l-2.61 2.61L3.18.39A1.07 1.07 0 014.16.22z"
+                            />
+                        </svg>
+                        <div class="btn-store-text">
+                            <small>Get it on</small>
+                            <strong>Google Play</strong>
+                        </div>
+                    </a>
+                </div>
+                <p class="cta-free">
+                    Free to download · Available on iOS & Android
+                </p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="footer-logo-wrap">
+                <img
+                    class="footer-logo-img"
+                    src="orangechaticon (1) (1).png"
+                    alt="Orange App Icon"
+                    width="28"
+                    height="28"
+                />
+                <span class="footer-logo-text">orange</span>
+            </div>
+            <p class="footer-tagline">
+                Stop juggling 5 apps. Learn Chinese in one.
+            </p>
+            <div class="footer-links">
+                <a
+                    href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
+                    class="footer-link"
+                    target="_blank"
+                    rel="noopener"
+                    >Download on the App Store</a
+                >
+                <a
+                    href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
+                    class="footer-link"
+                    target="_blank"
+                    rel="noopener"
+                    >Get it on Google Play</a
+                >
+            </div>
+        </footer>
+
+        <script>
+            // ── Device detection — highlight the right download button ──
+            const ua = navigator.userAgent || "";
+            const isIOS = /iPad|iPhone|iPod/.test(ua);
+            const isAndroid = /Android/.test(ua);
+            if (isIOS)
+                document
+                    .getElementById("btn-ios")
+                    ?.classList.add("btn-highlighted");
+            else if (isAndroid)
+                document
+                    .getElementById("btn-android")
+                    ?.classList.add("btn-highlighted");
+
+            // ── Scroll reveal for feature cards ──
+            const cards = document.querySelectorAll(".feature-card");
+            if ("IntersectionObserver" in window) {
+                const obs = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((e, i) => {
+                            if (e.isIntersecting) {
+                                setTimeout(() => {
+                                    e.target.style.transition =
+                                        "opacity 0.6s ease, transform 0.6s ease";
+                                    e.target.classList.add("visible");
+                                }, i * 80);
+                                obs.unobserve(e.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+                );
+                cards.forEach((c) => obs.observe(c));
+            } else {
+                // Fallback for browsers without IntersectionObserver
+                cards.forEach((c) => c.classList.add("visible"));
+            }
+        </script>
+    </body>
+</html>
