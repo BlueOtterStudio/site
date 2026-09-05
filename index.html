@@ -3,10 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Orange — Stop Juggling 5 Apps. Learn Chinese in One.</title>
+        <title>Orange — Stop juggling apps. Learn Chinese in one.</title>
+        <meta
+            name="description"
+            content="Orange packs an AI tutor, smart flashcards, stroke order and more into one Chinese-learning app. Free on iOS and Android."
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:ital,opsz,wght@0,12..96,400..800;1,12..96,400..800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
             rel="stylesheet"
         />
         <style>
@@ -19,214 +24,168 @@
             }
 
             :root {
-                --orange: #ff6b00;
-                --orange-dark: #e05800;
-                --orange-light: #ff8c2a;
-                --orange-pale: #fff3e8;
-                --orange-50: #fff8f2;
-                --black: #0f0f0f;
-                --gray: #6b6b6b;
-                --gray-light: #f5f4f2;
-                --white: #ffffff;
-                --radius: 20px;
-                --radius-sm: 12px;
+                --paper: #faf6ef;
+                --ink: #16130e;
+                --orange: #ff5a00;
+                --orange-dark: #e04e00;
+                --muted: #6d645a;
+                --ease: cubic-bezier(0.22, 1, 0.36, 1);
+                --pop: cubic-bezier(0.34, 1.56, 0.64, 1);
             }
 
             html {
                 scroll-behavior: smooth;
+                scroll-padding-top: 6rem;
+                overflow-x: hidden;
+                background: var(--paper);
             }
 
             body {
                 font-family: "Inter", sans-serif;
-                background: var(--white);
-                color: var(--black);
-                overflow-x: hidden;
+                background: var(--paper);
+                color: var(--ink);
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                text-rendering: optimizeLegibility;
+                line-height: 1.6;
             }
 
-            /* ── NAV ── */
-            nav {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: 100;
-                padding: 1rem 2rem;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                background: rgba(255, 255, 255, 0.92);
-                backdrop-filter: blur(20px) saturate(1.2);
-                -webkit-backdrop-filter: blur(20px) saturate(1.2);
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-            }
-            .nav-logo {
-                display: flex;
-                align-items: center;
-                gap: 0.6rem;
-                text-decoration: none;
-            }
-            .nav-logo-img {
-                width: 32px;
-                height: 32px;
-                display: block;
-            }
-            .nav-logo-text {
-                font-family: "Outfit", sans-serif;
-                font-weight: 800;
-                font-size: 1.35rem;
-                color: var(--orange);
-                letter-spacing: -0.02em;
-            }
-            .nav-logo-text span {
-                color: var(--black);
-                font-weight: 700;
-            }
-            .nav-cta {
+            ::selection {
                 background: var(--orange);
-                color: var(--white);
-                border: none;
-                border-radius: 100px;
-                padding: 0.6rem 1.6rem;
-                font-family: "Inter", sans-serif;
-                font-size: 0.9rem;
+                color: var(--paper);
+            }
+
+            :focus-visible {
+                outline: 2px solid var(--orange);
+                outline-offset: 3px;
+            }
+
+            .display {
+                font-family: "Bricolage Grotesque", "Inter", sans-serif;
+                font-weight: 800;
+                font-size: clamp(2.9rem, 8vw, 6.4rem);
+                line-height: 1.02;
+                letter-spacing: -0.035em;
+                text-wrap: balance;
+            }
+            .accent {
+                font-style: italic;
                 font-weight: 500;
-                cursor: pointer;
-                text-decoration: none;
-                transition:
-                    background 0.2s,
-                    transform 0.15s;
-                white-space: nowrap;
-            }
-            .nav-cta:hover {
-                background: var(--orange-dark);
-                transform: scale(1.03);
+                color: var(--orange);
             }
 
-            /* ── HERO ── */
-            .hero {
-                min-height: 100vh;
-                background: var(--black);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 5rem 1.5rem 1.25rem;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .hero-app-icon {
-                width: 88px;
-                height: 88px;
-                margin-bottom: 2rem;
-                animation: fadeUp 0.7s ease both;
-                position: relative;
-                z-index: 1;
-            }
-
-            .hero-badge {
+            .section-label {
                 display: inline-flex;
                 align-items: center;
-                gap: 0.5rem;
-                background: rgba(255, 107, 0, 0.15);
-                border: 1px solid rgba(255, 107, 0, 0.3);
-                color: #ffb070;
-                border-radius: 100px;
-                padding: 0.45rem 1.2rem;
-                font-size: 0.85rem;
-                font-weight: 500;
-                margin-bottom: 1.75rem;
-                letter-spacing: 0.02em;
-                animation: fadeUp 0.7s 0.08s ease both;
-                position: relative;
-                z-index: 1;
-                white-space: nowrap;
+                gap: 0.9rem;
+                font-size: 0.78rem;
+                font-weight: 700;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
+                color: var(--orange);
+                margin-bottom: 1.6rem;
             }
-            .badge-dot {
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
+            .section-label::after {
+                content: "";
+                width: 3rem;
+                height: 2px;
                 background: var(--orange);
-                animation: pulse-dot 2.5s ease-in-out infinite;
                 flex-shrink: 0;
             }
 
-            .hero h1 {
-                font-family: "Outfit", sans-serif;
-                font-size: clamp(2.4rem, 6.5vw, 5rem);
-                font-weight: 800;
-                line-height: 1.15;
-                color: var(--white);
-                letter-spacing: -0.03em;
-                max-width: 800px;
-                position: relative;
-                z-index: 1;
-                animation: fadeUp 0.7s 0.15s ease both;
-            }
-            .hero h1 em {
-                font-style: normal;
-                color: var(--orange-light);
+            section {
+                width: 100vw;
+                padding: clamp(4.5rem, 10vw, 8rem) 1.5rem;
+                border-top: 2px solid var(--ink);
             }
 
-            .hero-sub {
-                margin-top: 1.5rem;
-                font-size: clamp(1rem, 2vw, 1.15rem);
-                color: rgba(255, 255, 255, 0.6);
-                max-width: 560px;
-                line-height: 1.7;
-                font-weight: 400;
-                animation: fadeUp 0.7s 0.25s ease both;
-                position: relative;
-                z-index: 1;
+            /* ── SCROLL REVEALS — reversible: play forward on enter, in reverse on exit ── */
+            [data-reveal] .line-mask,
+            .hero .line-mask {
+                display: block;
+                overflow: hidden;
+                padding-bottom: 0.16em;
+                margin-bottom: -0.16em;
+                padding-right: 0.08em;
+                margin-right: -0.08em;
             }
-
-            .hero-btns {
-                margin-top: 2rem;
-                display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                animation: fadeUp 0.7s 0.35s ease both;
-                position: relative;
-                z-index: 1;
+            [data-reveal] .line-inner {
+                display: block;
+                transform: translateY(115%) rotate(3deg);
+                transition: transform 0.9s var(--ease);
             }
-
-            .btn-store {
-                display: flex;
-                align-items: center;
-                gap: 0.7rem;
-                padding: 0.85rem 1.6rem;
-                border-radius: 14px;
-                text-decoration: none;
-                font-family: "Inter", sans-serif;
-                font-weight: 500;
-                font-size: 0.9rem;
+            [data-reveal].in .line-inner {
+                transform: translateY(0) rotate(0deg);
+            }
+            [data-reveal] .line-mask:nth-child(2) .line-inner {
+                transition-delay: 0.09s;
+            }
+            .reveal-up {
+                opacity: 0;
+                transform: translateY(48px);
                 transition:
-                    transform 0.2s,
-                    box-shadow 0.2s;
-                min-width: 185px;
-                justify-content: center;
-                line-height: 1.2;
+                    opacity 0.8s var(--ease),
+                    transform 0.8s var(--ease);
             }
-            .btn-store:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+            .reveal-up.in {
+                opacity: 1;
+                transform: none;
+            }
+            .reveal-pop {
+                opacity: 0;
+                transform: scale(0.55) rotate(-8deg);
+                transition:
+                    opacity 0.7s var(--ease),
+                    transform 0.7s var(--pop);
+            }
+            .reveal-pop.in {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
             }
 
-            .btn-apple {
-                background: var(--white);
-                color: var(--black);
+            /* ── BUTTONS ── */
+            .btn {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.7rem;
+                padding: 0.95rem 1.9rem;
+                border-radius: 100px;
+                font-family: "Inter", sans-serif;
+                font-size: 0.92rem;
+                font-weight: 600;
+                line-height: 1.2;
+                text-decoration: none;
+                border: 2px solid transparent;
+                transition:
+                    transform 0.3s var(--ease),
+                    color 0.3s ease,
+                    border-color 0.3s ease,
+                    box-shadow 0.3s ease;
+                isolation: isolate;
+                cursor: pointer;
             }
-            .btn-google {
-                background: rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                color: var(--white);
+            .btn::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: var(--sweep, var(--orange));
+                border-radius: inherit;
+                transform: scaleX(0);
+                transform-origin: left center;
+                transition: transform 0.35s var(--ease);
+                z-index: -1;
             }
-            .btn-store svg {
+            .btn:hover::before {
+                transform: scaleX(1);
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+            .btn:active {
+                transform: translateY(0) scale(0.97);
+            }
+            .btn svg {
                 width: 22px;
                 height: 22px;
                 flex-shrink: 0;
@@ -236,368 +195,567 @@
             }
             .btn-store-text small {
                 display: block;
-                font-size: 0.68rem;
-                opacity: 0.65;
-                font-weight: 400;
-                letter-spacing: 0.01em;
+                font-size: 0.66rem;
+                font-weight: 500;
+                letter-spacing: 0.04em;
+                opacity: 0.75;
             }
             .btn-store-text strong {
                 display: block;
-                font-size: 0.95rem;
-                font-weight: 600;
+                font-size: 0.98rem;
+                font-weight: 700;
             }
 
+            .btn-nav {
+                padding: 0.6rem 1.4rem;
+                font-size: 0.85rem;
+                background: var(--ink);
+                color: var(--paper);
+                --sweep: var(--orange);
+            }
+            .btn-nav:hover {
+                color: var(--paper);
+            }
+            .btn-apple {
+                background: var(--paper);
+                color: var(--ink);
+                --sweep: var(--ink);
+            }
+            .btn-apple:hover {
+                color: var(--paper);
+            }
+            .btn-google {
+                background: transparent;
+                border-color: rgba(250, 246, 239, 0.4);
+                color: var(--paper);
+                --sweep: var(--paper);
+            }
+            .btn-google:hover {
+                color: var(--ink);
+            }
+            .btn-ink {
+                background: var(--ink);
+                color: var(--paper);
+                --sweep: var(--paper);
+            }
+            .btn-ink:hover {
+                color: var(--ink);
+            }
+            .btn-ghost {
+                background: transparent;
+                border-color: var(--ink);
+                color: var(--ink);
+                --sweep: var(--ink);
+            }
+            .btn-ghost:hover {
+                color: var(--paper);
+            }
+
+            /* Device highlight — flat ring + tag, no glow */
             .btn-highlighted {
-                box-shadow:
-                    0 0 0 3px var(--orange),
-                    0 10px 30px rgba(255, 107, 0, 0.4) !important;
-                animation: pulse-glow 2.5s ease-in-out infinite;
+                box-shadow: 0 0 0 3px var(--orange);
+            }
+            .btn-highlighted::after {
+                content: "Your device";
+                position: absolute;
+                top: -1.05rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--orange);
+                color: var(--paper);
+                border: 2px solid var(--paper);
+                font-size: 0.6rem;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                padding: 0.22rem 0.7rem;
+                border-radius: 100px;
+                white-space: nowrap;
+                z-index: 2;
             }
 
-            .hero-stats {
-                margin-top: 2rem;
+            /* ── NAV ── */
+            nav {
+                position: fixed;
+                top: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 100;
+                width: min(92%, 720px);
+                padding: 0.5rem 0.55rem 0.5rem 1.1rem;
                 display: flex;
-                gap: 2.5rem;
-                flex-wrap: wrap;
-                justify-content: center;
-                animation: fadeUp 0.7s 0.45s ease both;
-                position: relative;
-                z-index: 1;
+                align-items: center;
+                justify-content: space-between;
+                background: var(--paper);
+                border: 2px solid var(--ink);
+                border-radius: 100px;
+                box-shadow: 0 8px 24px rgba(22, 19, 14, 0.14);
             }
-            .hero-stat {
-                text-align: center;
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 0.55rem;
+                text-decoration: none;
             }
-            .hero-stat strong {
+            .nav-logo-img {
+                width: 30px;
+                height: 30px;
                 display: block;
-                font-family: "Outfit", sans-serif;
-                font-size: 1.7rem;
+                border-radius: 8px;
+            }
+            .nav-logo-text {
+                font-family: "Bricolage Grotesque", sans-serif;
                 font-weight: 800;
-                color: var(--white);
+                font-size: 1.3rem;
+                color: var(--ink);
                 letter-spacing: -0.02em;
             }
-            .hero-stat span {
-                font-size: 0.8rem;
-                color: rgba(255, 255, 255, 0.45);
-                margin-top: 0.2rem;
-                display: block;
+            .nav-logo-text span {
+                color: var(--orange);
             }
 
-            .scroll-hint {
-                margin-top: 1.25rem;
-                color: rgba(255, 255, 255, 0.3);
-                font-size: 0.8rem;
-                letter-spacing: 0.12em;
-                animation:
-                    fadeUp 0.7s 0.6s ease both,
-                    bounce 2.5s 2s ease-in-out infinite;
+            /* ── HERO ── */
+            .hero {
+                position: relative;
+                min-height: 100vh;
+                background: var(--ink);
+                color: var(--paper);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 0.4rem;
+                justify-content: center;
+                text-align: center;
+                padding: 8rem 1.5rem 4rem;
+                overflow: hidden;
+                border-top: none;
+            }
+            .hero-hanzi {
+                position: absolute;
+                top: 9rem;
+                right: -5%;
+                pointer-events: none;
+                z-index: 0;
+            }
+            .hero-hanzi span {
+                display: block;
+                font-family: "Bricolage Grotesque", "Noto Sans SC", sans-serif;
+                font-weight: 800;
+                font-size: clamp(15rem, 32vw, 30rem);
+                line-height: 1;
+                color: rgba(250, 246, 239, 0.05);
+                animation: spin 80s linear infinite;
+            }
+            @supports (-webkit-text-stroke: 1px black) {
+                .hero-hanzi span {
+                    color: transparent;
+                    -webkit-text-stroke: 1.5px rgba(250, 246, 239, 0.12);
+                }
+            }
+            .hero-inner {
                 position: relative;
                 z-index: 1;
+                width: 100%;
+                max-width: 900px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-            .scroll-arrow-svg {
+            .hero-eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.55rem;
+                border: 2px solid rgba(250, 246, 239, 0.28);
+                border-radius: 100px;
+                padding: 0.45rem 1.25rem;
+                font-size: 0.78rem;
+                font-weight: 600;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                margin-bottom: 2rem;
+                animation: fade-up 0.8s 0.05s var(--ease) both;
+            }
+            .hero-eyebrow::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--orange);
+                flex-shrink: 0;
+            }
+            .hero h1 {
+                font-family: "Bricolage Grotesque", "Inter", sans-serif;
+                font-size: clamp(3rem, 9.5vw, 7.5rem);
+                font-weight: 800;
+                line-height: 1;
+                letter-spacing: -0.035em;
+                margin-bottom: 1.75rem;
+                text-wrap: balance;
+            }
+            .hero .line-inner {
+                display: block;
+                transform: translateY(115%) rotate(3deg);
+                animation: line-up 1s var(--ease) forwards;
+                animation-delay: 0.1s;
+            }
+            .hero .line-mask:nth-child(2) .line-inner {
+                animation-delay: 0.22s;
+            }
+            .hero .line-mask:nth-child(3) .line-inner {
+                animation-delay: 0.34s;
+            }
+            .hero .line-mask:nth-child(4) .line-inner {
+                animation-delay: 0.42s;
+            }
+            .hero .accent {
+                color: var(--orange);
+                font-style: italic;
+                font-weight: 500;
+            }
+            .hero-sub {
+                max-width: 560px;
+                font-size: clamp(1rem, 2vw, 1.15rem);
+                color: rgba(250, 246, 239, 0.68);
+                line-height: 1.7;
+                margin-bottom: 2.25rem;
+                animation: fade-up 0.8s 0.55s var(--ease) both;
+            }
+            .hero-btns {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding-top: 1.4rem;
+                margin-bottom: 2.25rem;
+                animation: fade-up 0.8s 0.68s var(--ease) both;
+            }
+            .hero-stats {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                animation: fade-up 0.8s 0.82s var(--ease) both;
+            }
+            .hero-stat {
+                padding: 0 1.6rem;
+                text-align: center;
+            }
+            .hero-stat + .hero-stat {
+                border-left: 2px solid rgba(250, 246, 239, 0.16);
+            }
+            .hero-stat strong {
+                display: block;
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-size: 1.5rem;
+                font-weight: 800;
+                letter-spacing: -0.02em;
+            }
+            .hero-stat em {
+                color: var(--orange);
+                font-style: normal;
+            }
+            .hero-stat span {
+                display: block;
+                font-size: 0.78rem;
+                color: rgba(250, 246, 239, 0.5);
+                margin-top: 0.15rem;
+                letter-spacing: 0.04em;
+            }
+            .scroll-hint {
+                position: absolute;
+                bottom: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.3rem;
+                font-size: 0.68rem;
+                letter-spacing: 0.3em;
+                text-transform: uppercase;
+                color: rgba(250, 246, 239, 0.45);
+                animation: fade-up 0.8s 1.05s var(--ease) both;
+            }
+            .scroll-hint svg {
                 width: 18px;
                 height: 18px;
-                opacity: 0.6;
+                animation: bob 2.2s ease-in-out infinite;
             }
 
             /* ── SOCIAL PROOF BAR ── */
             .social-proof {
-                background: var(--white);
-                border-bottom: 1px solid #f0ede8;
-                padding: 1.75rem 1.5rem;
-                text-align: center;
+                width: 100vw;
+                padding: 1.9rem 1.5rem;
+                border-top: 2px solid var(--ink);
+                border-bottom: 2px solid var(--ink);
+                background: var(--paper);
             }
             .social-proof-inner {
-                max-width: 900px;
+                max-width: 980px;
                 margin: 0 auto;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 1.25rem;
+                gap: 1.4rem;
                 flex-wrap: wrap;
             }
             .social-stars {
                 display: flex;
                 gap: 3px;
-                align-items: center;
             }
             .social-stars svg {
                 width: 20px;
                 height: 20px;
-                flex-shrink: 0;
+                fill: var(--orange);
             }
             .social-text {
                 font-size: 0.95rem;
                 font-weight: 500;
-                color: var(--black);
+                color: var(--muted);
             }
             .social-text strong {
-                color: var(--orange);
+                color: var(--ink);
             }
             .social-avatars {
                 display: flex;
-                align-items: center;
             }
             .social-avatar {
-                width: 32px;
-                height: 32px;
+                width: 34px;
+                height: 34px;
                 border-radius: 50%;
-                border: 2px solid var(--white);
+                border: 2px solid var(--paper);
                 margin-left: -10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 0.75rem;
-                font-weight: 700;
-                color: var(--white);
-                flex-shrink: 0;
+                font-size: 0.72rem;
+                font-weight: 800;
+                color: var(--ink);
             }
             .social-avatar:first-child {
                 margin-left: 0;
             }
             .social-avatar.a1 {
-                background: #ff6b00;
-                z-index: 5;
+                background: var(--orange);
+                color: var(--paper);
             }
             .social-avatar.a2 {
-                background: #ff8c2a;
-                z-index: 4;
+                background: #ff8a3d;
             }
             .social-avatar.a3 {
-                background: #ffb347;
-                z-index: 3;
+                background: #ffb37a;
             }
             .social-avatar.a4 {
-                background: #ffd08a;
-                z-index: 2;
-                color: var(--orange);
+                background: #ffd9b8;
             }
 
             /* ── MARQUEE STRIP ── */
             .strip {
-                background: var(--orange);
-                padding: 1rem 0;
-                overflow: hidden;
                 position: relative;
-            }
-            .strip::before,
-            .strip::after {
-                content: "";
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 80px;
-                z-index: 2;
-                pointer-events: none;
-            }
-            .strip::before {
-                left: 0;
-                background: linear-gradient(
-                    to right,
-                    var(--orange),
-                    transparent
-                );
-            }
-            .strip::after {
-                right: 0;
-                background: linear-gradient(
-                    to left,
-                    var(--orange),
-                    transparent
-                );
+                z-index: 5;
+                background: var(--orange);
+                color: var(--ink);
+                border-top: 2px solid var(--ink);
+                border-bottom: 2px solid var(--ink);
+                transform: rotate(-1.5deg);
+                width: 106vw;
+                margin: -1.4rem -3vw;
+                padding: 1.05rem 0;
+                overflow: hidden;
             }
             .strip-inner {
                 display: flex;
-                gap: 3rem;
-                animation: marquee 25s linear infinite;
                 width: max-content;
+                animation: marquee 36s linear infinite;
+            }
+            .strip:hover .strip-inner {
+                animation-play-state: paused;
             }
             .strip-item {
-                font-family: "Inter", sans-serif;
-                font-size: 0.85rem;
-                font-weight: 400;
-                color: rgba(255, 255, 255, 0.9);
-                white-space: nowrap;
-                letter-spacing: 0.01em;
                 display: flex;
                 align-items: center;
-                gap: 0.8rem;
-                flex-shrink: 0;
+                font-size: 0.88rem;
+                font-weight: 600;
                 font-style: italic;
+                white-space: nowrap;
+                letter-spacing: 0.01em;
             }
             .strip-item::after {
                 content: "★";
-                opacity: 0.5;
+                margin: 0 3rem;
                 font-size: 0.6rem;
-            }
-
-            /* ── SECTION COMMON ── */
-            section {
-                padding: 6rem 1.5rem;
-            }
-            .section-label {
-                font-size: 0.8rem;
-                font-weight: 600;
-                letter-spacing: 0.15em;
-                text-transform: uppercase;
-                color: var(--orange);
-                margin-bottom: 1rem;
-            }
-            .section-title {
-                font-family: "Outfit", sans-serif;
-                font-size: clamp(1.9rem, 4.5vw, 3rem);
-                font-weight: 800;
-                line-height: 1.2;
-                letter-spacing: -0.02em;
-                color: var(--black);
-                max-width: 650px;
-            }
-            .section-title em {
                 font-style: normal;
-                color: var(--orange);
+                opacity: 0.6;
             }
 
             /* ── APP COMPARISON ── */
             .comparison {
-                background: var(--white);
                 text-align: center;
-                padding: 6rem 2rem;
+                background: var(--paper);
             }
             .comparison-container {
-                max-width: 750px;
+                max-width: 900px;
                 margin: 0 auto;
             }
-            .comparison-heading {
-                font-family: "Outfit", sans-serif;
-                font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-                font-weight: 700;
-                line-height: 1.25;
-                color: var(--black);
-                margin-bottom: 2.5rem;
-                letter-spacing: -0.02em;
+            .comparison .display {
+                margin-bottom: 3.25rem;
             }
             .comparison-icons {
                 display: flex;
-                gap: 1.25rem;
+                gap: 1.1rem;
                 justify-content: center;
                 flex-wrap: wrap;
                 margin-bottom: 0.5rem;
             }
             .comp-icon {
-                width: 84px;
-                height: 84px;
-                background: var(--gray-light);
+                width: 88px;
+                height: 88px;
+                background: var(--paper);
+                border: 2px solid var(--ink);
                 border-radius: 18px;
+                box-shadow: 5px 5px 0 rgba(22, 19, 14, 0.08);
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: transform 0.2s;
             }
             .comp-icon img {
-                width: 66px;
-                height: 66px;
+                width: 64px;
+                height: 64px;
                 object-fit: contain;
+                filter: grayscale(0.5);
+                opacity: 0.75;
+                transition:
+                    filter 0.25s ease,
+                    opacity 0.25s ease;
             }
-            .comp-icon:hover {
+            .comp-icon.in:hover {
                 transform: translateY(-4px);
+            }
+            .comp-icon.in:hover img {
+                filter: grayscale(0);
+                opacity: 1;
             }
             .comparison-arrows {
                 display: flex;
                 justify-content: center;
-                margin-bottom: 0.75rem;
+                margin-bottom: 0.4rem;
                 color: var(--orange);
-                overflow: visible;
             }
             .comparison-arrows svg {
                 width: 100%;
                 max-width: 500px;
-                height: 70px;
-                opacity: 0.4;
+                height: 74px;
             }
-            .comparison-center-arrow {
-                display: flex;
-                justify-content: center;
-                margin-bottom: 0.75rem;
-                color: var(--orange);
+            .comparison-arrows path {
+                stroke-dasharray: 340;
+                stroke-dashoffset: 340;
+                transition: stroke-dashoffset 1s var(--ease);
             }
-            .comparison-center-arrow svg {
-                width: 28px;
-                height: 28px;
-                opacity: 0.6;
+            .comparison-arrows.in path {
+                stroke-dashoffset: 0;
+            }
+            .comparison-arrows.in path:nth-child(2) {
+                transition-delay: 0.08s;
+            }
+            .comparison-arrows.in path:nth-child(3) {
+                transition-delay: 0.16s;
+            }
+            .comparison-arrows.in path:nth-child(4) {
+                transition-delay: 0.24s;
+            }
+            .comparison-arrows.in path:nth-child(5) {
+                transition-delay: 0.32s;
+            }
+            .comparison-arrows.in path:nth-child(6) {
+                transition-delay: 0.4s;
             }
             .comparison-orange {
-                margin-bottom: 1rem;
+                display: inline-block;
+                margin-bottom: 1.75rem;
             }
             .comparison-orange-icon {
-                width: 120px;
-                height: 120px;
-                filter: drop-shadow(0 4px 14px rgba(255, 107, 0, 0.25));
+                width: 150px;
+                height: 150px;
+                display: block;
+                border-radius: 34px;
+                border: 3px solid var(--orange);
             }
             .comparison-sub {
-                font-size: 1.1rem;
-                color: var(--gray);
-                font-weight: 400;
+                font-size: 1.35rem;
+                font-weight: 700;
+                letter-spacing: -0.01em;
             }
-            .comparison-sub strong {
+            .comparison-sub em {
+                font-style: italic;
                 color: var(--orange);
-                font-weight: 600;
             }
 
             /* ── FEATURES ── */
             .features {
-                background: var(--gray-light);
+                background: var(--paper);
             }
             .features-container {
-                max-width: 1100px;
+                max-width: 1120px;
                 margin: 0 auto;
             }
             .features-header {
-                text-align: center;
+                max-width: 760px;
                 margin-bottom: 3.5rem;
-            }
-            .features-header .section-title {
-                margin: 0 auto;
             }
             .features-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                 gap: 1.25rem;
             }
-
             .feature-card {
-                background: var(--white);
-                border-radius: var(--radius);
-                padding: 2.25rem 1.75rem;
-                transition:
-                    transform 0.3s ease,
-                    box-shadow 0.3s ease;
+                position: relative;
+                background: var(--paper);
+                border: 2px solid var(--ink);
+                border-radius: 22px;
+                box-shadow: 7px 7px 0 rgba(22, 19, 14, 0.08);
+                padding: 2.1rem 1.8rem 1.9rem;
                 opacity: 0;
-                transform: translateY(24px);
-                min-height: 0;
+                transform: translateY(46px) scale(0.96);
+                transition:
+                    opacity 0.75s var(--ease),
+                    transform 0.75s var(--ease),
+                    border-color 0.3s ease,
+                    box-shadow 0.3s ease;
             }
-            .feature-card.visible {
+            .feature-card.in {
                 opacity: 1;
-                transform: translateY(0);
+                transform: none;
             }
-            .feature-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            .feature-card.in:hover {
+                transform: translateY(-6px);
+                border-color: var(--orange);
+                box-shadow: 9px 9px 0 rgba(255, 90, 0, 0.16);
             }
-
+            .feature-num {
+                position: absolute;
+                top: 1.4rem;
+                right: 1.6rem;
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-weight: 800;
+                font-size: 0.9rem;
+                letter-spacing: 0.08em;
+                color: var(--orange);
+            }
             .feature-icon {
-                width: 52px;
-                height: 52px;
-                background: var(--orange-pale);
+                width: 54px;
+                height: 54px;
+                background: var(--ink);
+                color: var(--orange);
                 border-radius: 14px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                margin-bottom: 1.25rem;
-                color: var(--orange);
-                flex-shrink: 0;
+                margin-bottom: 1.3rem;
+                transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+            }
+            .feature-card.in:hover .feature-icon {
+                background: var(--orange);
+                color: var(--paper);
             }
             .feature-icon svg {
                 width: 24px;
@@ -605,269 +763,229 @@
                 flex-shrink: 0;
             }
             .feature-card h3 {
-                font-family: "Outfit", sans-serif;
-                font-size: 1.15rem;
-                font-weight: 700;
-                margin-bottom: 0.6rem;
-                color: var(--black);
-                line-height: 1.3;
+                font-family: "Bricolage Grotesque", sans-serif;
+                font-size: 1.28rem;
+                font-weight: 800;
+                letter-spacing: -0.02em;
+                margin-bottom: 0.55rem;
             }
             .feature-card p {
-                font-size: 0.95rem;
-                line-height: 1.7;
-                color: var(--gray);
-                font-weight: 400;
+                font-size: 0.94rem;
+                line-height: 1.68;
+                color: var(--muted);
+                max-width: 34ch;
             }
 
             /* ── WHO SECTION ── */
             .who {
-                background: var(--black);
-            }
-            .who-container {
-                max-width: 850px;
-                margin: 0 auto;
+                background: var(--ink);
+                color: var(--paper);
+                border-top: none;
+                overflow: hidden;
+                position: relative;
                 text-align: center;
             }
-            .who .section-title {
-                color: var(--white);
-                margin: 0 auto 1rem;
+            .who-container {
+                max-width: 840px;
+                margin: 0 auto;
+            }
+            .who .display {
+                color: var(--paper);
+                margin-bottom: 1.4rem;
             }
             .who-sub {
-                color: rgba(255, 255, 255, 0.55);
+                color: rgba(250, 246, 239, 0.6);
+                max-width: 540px;
+                margin: 0 auto 3.2rem;
                 font-size: 1.05rem;
-                font-weight: 400;
-                margin-bottom: 3rem;
-                max-width: 550px;
-                margin-left: auto;
-                margin-right: auto;
                 line-height: 1.7;
             }
             .who-pills {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 0.75rem;
+                gap: 0.8rem;
                 justify-content: center;
             }
             .who-pill {
-                background: rgba(255, 255, 255, 0.06);
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                color: rgba(255, 255, 255, 0.9);
+                border: 2px solid rgba(250, 246, 239, 0.28);
                 border-radius: 100px;
-                padding: 0.65rem 1.5rem;
-                font-size: 0.93rem;
-                font-weight: 400;
-                transition: all 0.2s ease;
-                white-space: nowrap;
+                padding: 0.7rem 1.6rem;
+                font-size: 0.95rem;
+                font-weight: 500;
+                color: var(--paper);
+                opacity: 0;
+                transform: translateY(28px) scale(0.92);
+                transition:
+                    opacity 0.6s var(--ease),
+                    transform 0.6s var(--ease),
+                    background 0.25s ease,
+                    border-color 0.25s ease;
             }
-            .who-pill:hover {
-                background: rgba(255, 107, 0, 0.18);
-                border-color: rgba(255, 107, 0, 0.35);
-                color: var(--white);
+            .who-pill.in {
+                opacity: 1;
+                transform: none;
+            }
+            .who-pill.in:hover {
+                background: var(--orange);
+                border-color: var(--orange);
+                transform: translateY(-3px);
             }
 
             /* ── FINAL CTA ── */
             .cta-section {
-                padding: 4rem 1.5rem 2rem;
-                background: var(--black);
-            }
-            .cta-final {
+                position: relative;
                 background: var(--orange);
-                border-radius: var(--radius);
-                padding: 4.5rem 2rem;
-                text-align: center;
-                max-width: 850px;
-                margin: 0 auto;
-                position: relative;
                 overflow: hidden;
+                text-align: center;
+                padding: clamp(5rem, 11vw, 9rem) 1.5rem;
             }
-            .cta-final::before {
-                content: "";
+            .cta-shape {
                 position: absolute;
-                top: -120px;
-                right: -120px;
-                width: 380px;
-                height: 380px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.07);
+                pointer-events: none;
             }
-            .cta-final::after {
-                content: "";
-                position: absolute;
-                bottom: -100px;
-                left: -100px;
-                width: 280px;
-                height: 280px;
+            .cta-circle {
+                top: -9rem;
+                right: -9rem;
+                width: 22rem;
+                height: 22rem;
+                border: 3px solid rgba(22, 19, 14, 0.22);
                 border-radius: 50%;
-                background: rgba(0, 0, 0, 0.07);
             }
-            .cta-final h2 {
-                font-family: "Outfit", sans-serif;
-                font-size: clamp(1.9rem, 4.5vw, 3rem);
+            .cta-hanzi {
+                bottom: -6.5rem;
+                left: -3rem;
+                font-family: "Bricolage Grotesque", "Noto Sans SC", sans-serif;
                 font-weight: 800;
-                color: var(--white);
-                letter-spacing: -0.02em;
-                margin-bottom: 0.8rem;
-                position: relative;
-                z-index: 1;
-                line-height: 1.2;
+                font-size: clamp(12rem, 26vw, 22rem);
+                line-height: 1;
+                color: transparent;
+                -webkit-text-stroke: 2px rgba(22, 19, 14, 0.16);
             }
-            .cta-final p {
-                color: rgba(255, 255, 255, 0.85);
-                font-size: 1.05rem;
-                font-weight: 400;
-                margin-bottom: 2.5rem;
+            @supports not (-webkit-text-stroke: 1px black) {
+                .cta-hanzi {
+                    color: rgba(22, 19, 14, 0.08);
+                }
+            }
+            .cta-inner {
                 position: relative;
                 z-index: 1;
-                max-width: 460px;
-                margin-left: auto;
-                margin-right: auto;
-                line-height: 1.6;
+                max-width: 820px;
+                margin: 0 auto;
+            }
+            .cta-section .display {
+                color: var(--ink);
+                margin-bottom: 1.5rem;
+            }
+            .cta-section .accent {
+                color: var(--paper);
+            }
+            .cta-sub {
+                font-size: 1.05rem;
+                font-weight: 500;
+                color: rgba(22, 19, 14, 0.75);
+                margin-bottom: 2.6rem;
             }
             .cta-btns {
                 display: flex;
                 gap: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
-                position: relative;
-                z-index: 1;
             }
-            .btn-cta {
-                display: flex;
-                align-items: center;
-                gap: 0.65rem;
-                padding: 0.9rem 1.8rem;
-                border-radius: 14px;
-                text-decoration: none;
-                font-family: "Inter", sans-serif;
-                font-weight: 500;
-                font-size: 0.9rem;
-                transition:
-                    transform 0.2s,
-                    opacity 0.2s;
-                line-height: 1.2;
-            }
-            .btn-cta:hover {
-                transform: scale(1.04);
-            }
-            .btn-cta-white {
-                background: var(--white);
-                color: var(--black);
-            }
-            .btn-cta-dark {
-                background: rgba(0, 0, 0, 0.25);
-                color: var(--white);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-            }
-            .btn-cta svg {
-                width: 22px;
-                height: 22px;
-                flex-shrink: 0;
-            }
-
             .cta-free {
+                margin-top: 1.9rem;
                 font-size: 0.8rem;
-                color: rgba(255, 255, 255, 0.5);
-                margin-top: 1.5rem;
-                position: relative;
-                z-index: 1;
+                font-weight: 600;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: rgba(22, 19, 14, 0.7);
             }
 
             /* ── FOOTER ── */
             footer {
-                padding: 2.5rem 1.5rem 3rem;
+                width: 100vw;
+                padding: 3.5rem 1.5rem 4rem;
                 text-align: center;
-                border-top: 1px solid #f0ede8;
-                background: var(--white);
+                border-top: 2px solid var(--ink);
+                background: var(--paper);
             }
             .footer-logo-wrap {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 0.5rem;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.75rem;
             }
             .footer-logo-img {
                 width: 28px;
                 height: 28px;
+                border-radius: 7px;
                 display: block;
             }
             .footer-logo-text {
-                font-family: "Outfit", sans-serif;
+                font-family: "Bricolage Grotesque", sans-serif;
                 font-weight: 800;
                 font-size: 1.2rem;
+            }
+            .footer-logo-text span {
                 color: var(--orange);
             }
             .footer-tagline {
-                font-size: 0.9rem;
-                color: var(--gray);
-                font-weight: 400;
-                margin-bottom: 1.5rem;
+                font-size: 0.92rem;
+                color: var(--muted);
+                margin-bottom: 2rem;
             }
             .footer-links {
                 display: flex;
-                gap: 1.5rem;
+                gap: 1.6rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
             .footer-link {
-                font-size: 0.85rem;
-                font-weight: 500;
+                font-size: 0.88rem;
+                font-weight: 600;
                 text-decoration: none;
-                color: var(--orange);
-                transition: color 0.2s;
+                color: var(--ink);
+                border-bottom: 2px solid transparent;
+                transition:
+                    color 0.2s ease,
+                    border-color 0.2s ease;
             }
             .footer-link:hover {
-                color: var(--orange-dark);
+                color: var(--orange);
+                border-bottom-color: var(--orange);
             }
 
-            /* ── ANIMATIONS ── */
-            @keyframes fadeUp {
+            /* ── KEYFRAMES ── */
+            @keyframes fade-up {
                 from {
                     opacity: 0;
-                    transform: translateY(24px);
+                    transform: translateY(28px);
                 }
                 to {
                     opacity: 1;
-                    transform: translateY(0);
+                    transform: none;
                 }
             }
-            @keyframes bounce {
+            @keyframes line-up {
+                to {
+                    transform: translateY(0) rotate(0deg);
+                }
+            }
+            @keyframes bob {
                 0%,
                 100% {
                     transform: translateY(0);
                 }
                 50% {
-                    transform: translateY(8px);
+                    transform: translateY(7px);
                 }
             }
-            @keyframes pulse-dot {
-                0%,
-                100% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                50% {
-                    opacity: 0.5;
-                    transform: scale(0.85);
-                }
-            }
-            @keyframes pulse-glow {
-                0%,
-                100% {
-                    box-shadow:
-                        0 0 0 3px var(--orange),
-                        0 10px 30px rgba(255, 107, 0, 0.4);
-                }
-                50% {
-                    box-shadow:
-                        0 0 0 5px rgba(255, 107, 0, 0.2),
-                        0 14px 40px rgba(255, 107, 0, 0.55);
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
                 }
             }
             @keyframes marquee {
-                from {
-                    transform: translateX(0);
-                }
                 to {
                     transform: translateX(-50%);
                 }
@@ -875,67 +993,84 @@
 
             /* ── RESPONSIVE ── */
             @media (max-width: 700px) {
-                .hero-stats {
-                    gap: 1.5rem;
-                }
                 nav {
-                    padding: 0.85rem 1rem;
+                    top: 0.75rem;
+                    width: calc(100% - 1.5rem);
                 }
                 .nav-cta {
-                    display: none;
-                }
-                .features-grid {
-                    grid-template-columns: 1fr;
-                }
-                .social-proof-inner {
-                    flex-direction: column;
-                    gap: 0.75rem;
-                }
-                .hero h1 {
-                    font-size: clamp(2.1rem, 8vw, 3rem);
-                }
-                .btn-store {
-                    min-width: 160px;
-                    padding: 0.8rem 1.2rem;
-                }
-                .hero-app-icon {
-                    width: 72px;
-                    height: 72px;
+                    padding: 0.5rem 1.1rem;
                 }
                 .hero {
-                    padding: 4rem 1.25rem 1.25rem;
+                    padding-top: 7rem;
                 }
-                .cta-final {
-                    padding: 3rem 1.5rem;
+                .hero-stat {
+                    padding: 0 1rem;
                 }
-                section {
-                    padding: 4rem 1.25rem;
+                .strip {
+                    width: 110vw;
+                    margin: -1rem -5vw;
                 }
                 .comp-icon {
-                    width: 60px;
-                    height: 60px;
+                    width: 66px;
+                    height: 66px;
                     border-radius: 14px;
                 }
                 .comp-icon img {
-                    width: 46px;
-                    height: 46px;
-                }
-                .comparison {
-                    padding: 4rem 1.25rem;
+                    width: 48px;
+                    height: 48px;
                 }
                 .comparison-orange-icon {
-                    width: 96px;
-                    height: 96px;
+                    width: 118px;
+                    height: 118px;
+                }
+                .feature-card {
+                    padding: 1.8rem 1.5rem 1.6rem;
+                }
+                .btn {
+                    width: 100%;
+                    max-width: 320px;
+                }
+                .hero-btns,
+                .cta-btns {
+                    width: 100%;
+                }
+                .hero-hanzi {
+                    right: -20%;
+                    opacity: 0.7;
+                }
+                .scroll-hint {
+                    display: none;
+                }
+                .cta-circle {
+                    width: 16rem;
+                    height: 16rem;
+                    top: -7rem;
+                    right: -7rem;
                 }
             }
 
+            /* ── REDUCED MOTION ── */
             @media (prefers-reduced-motion: reduce) {
                 *,
                 *::before,
                 *::after {
                     animation-duration: 0.01ms !important;
+                    animation-delay: 0ms !important;
                     animation-iteration-count: 1 !important;
                     transition-duration: 0.01ms !important;
+                    transition-delay: 0ms !important;
+                }
+                [data-reveal],
+                [data-reveal] .line-inner,
+                .feature-card,
+                .who-pill,
+                .comp-icon,
+                .comparison-orange {
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+                .comparison-arrows path {
+                    stroke-dashoffset: 0 !important;
                 }
             }
         </style>
@@ -949,71 +1084,106 @@
                     class="nav-logo-img"
                     src="orangechaticon (1) (1).png"
                     alt="Orange App Icon"
-                    width="32"
-                    height="32"
+                    width="30"
+                    height="30"
                 />
-                <span class="nav-logo-text">orange<span>.</span></span>
+                <span class="nav-logo-text">Orange Chinese</span>
             </a>
-            <a href="#download" class="nav-cta">Download Free</a>
+            <a href="#download" class="btn btn-nav">Download Free</a>
         </nav>
 
         <!-- HERO -->
         <section class="hero">
-            <h1>Stop Juggling 5 Apps<br /><em>to Learn Chinese.</em></h1>
-
-            <p class="hero-sub">Orange gives you everything you need!</p>
-
-            <div class="hero-btns" id="download">
-                <!-- Apple App Store Button -->
-                <a
-                    href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
-                    class="btn-store btn-apple"
-                    target="_blank"
-                    rel="noopener"
-                    id="btn-ios"
-                >
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
-                        />
-                    </svg>
-                    <div class="btn-store-text">
-                        <small>Download on the</small>
-                        <strong>App Store</strong>
-                    </div>
-                </a>
-                <!-- Google Play Button -->
-                <a
-                    href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
-                    class="btn-store btn-google"
-                    target="_blank"
-                    rel="noopener"
-                    id="btn-android"
-                >
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.61-2.61-10.45 9.44zm-1.76-19.1c-.24.3-.38.73-.38 1.28v14.12c0 .55.14.98.39 1.28l.07.06 7.91-7.91v-.19L1.35 4.6l-.06.06h.13zm17.54 7.87l-2.21-1.28-2.93 2.93 2.93 2.93 2.23-1.28c.63-.37.63-.96 0-1.3h-.02zM4.16.22L16.25 7.2l-2.61 2.61L3.18.39A1.07 1.07 0 014.16.22z"
-                        />
-                    </svg>
-                    <div class="btn-store-text">
-                        <small>Get it on</small>
-                        <strong>Google Play</strong>
-                    </div>
-                </a>
+            <div class="hero-hanzi" data-speed="0.14" aria-hidden="true">
+                <span>汉</span>
             </div>
-
+            <div class="hero-inner">
+                <p class="hero-eyebrow">One app for Chinese</p>
+                <h1>
+                    <span class="line-mask"
+                        ><span class="line-inner">Stop juggling</span></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner accent">multiple apps.</span></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner"
+                            >Study Chinese</span
+                        ></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner">in one.</span></span
+                    >
+                </h1>
+                <p class="hero-sub">
+                    Orange packs an AI tutor, smart flashcards, stroke-order
+                    guides and a photo reader into one app — so you can stop
+                    switching and start speaking.
+                </p>
+                <div class="hero-btns" id="download">
+                    <!-- Apple App Store Button -->
+                    <a
+                        href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
+                        class="btn btn-apple"
+                        target="_blank"
+                        rel="noopener"
+                        id="btn-ios"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                            />
+                        </svg>
+                        <span class="btn-store-text">
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </span>
+                    </a>
+                    <!-- Google Play Button -->
+                    <a
+                        href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
+                        class="btn btn-google"
+                        target="_blank"
+                        rel="noopener"
+                        id="btn-android"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.61-2.61-10.45 9.44zm-1.76-19.1c-.24.3-.38.73-.38 1.28v14.12c0 .55.14.98.39 1.28l.07.06 7.91-7.91v-.19L1.35 4.6l-.06.06h.13zm17.54 7.87l-2.21-1.28-2.93 2.93 2.93 2.93 2.23-1.28c.63-.37.63-.96 0-1.3h-.02zM4.16.22L16.25 7.2l-2.61 2.61L3.18.39A1.07 1.07 0 014.16.22z"
+                            />
+                        </svg>
+                        <span class="btn-store-text">
+                            <small>Get it on</small>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>4.9<em>★</em></strong>
+                        <span>App Store rating</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>3,000+</strong>
+                        <span>flashcards included</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>HSK 1–6</strong>
+                        <span>levels covered</span>
+                    </div>
+                </div>
+            </div>
             <div class="scroll-hint">
-                <span>Scroll to explore</span>
+                <span>Scroll</span>
                 <svg
-                    class="scroll-arrow-svg"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -1028,37 +1198,37 @@
         </section>
 
         <!-- SOCIAL PROOF BAR -->
-        <div class="social-proof">
+        <div class="social-proof reveal-up" data-reveal>
             <div class="social-proof-inner">
                 <div class="social-stars">
-                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
                         <path
                             d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
                         />
                     </svg>
-                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
                         <path
                             d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
                         />
                     </svg>
-                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
                         <path
                             d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
                         />
                     </svg>
-                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
                         <path
                             d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
                         />
                     </svg>
-                    <svg viewBox="0 0 20 20" fill="#FF6B00" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" aria-hidden="true">
                         <path
                             d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.51L10 13.47l-4.94 2.67.94-5.51-4-3.9 5.61-.89L10 1z"
                         />
                     </svg>
                 </div>
                 <span class="social-text"
-                    >Rated <strong>4.9 ★</strong> by Chinese learners
+                    >Rated <strong>4.9</strong> by Chinese learners
                     worldwide</span
                 >
                 <div class="social-avatars">
@@ -1133,63 +1303,96 @@
         </div>
 
         <!-- APP COMPARISON -->
-        <section class="comparison">
+        <section class="comparison" id="comparison">
             <div class="comparison-container">
-                <p class="section-label">Stop the juggle</p>
-                <h2 class="comparison-heading">
-                    Instead of juggling between<br />all these apps…
+                <p class="section-label reveal-up" data-reveal
+                    >01 — The problem</p
+                >
+                <h2 class="display" data-reveal>
+                    <span class="line-mask"
+                        ><span class="line-inner">Multiple apps.</span></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner accent"
+                            >Zero flow.</span
+                        ></span
+                    >
                 </h2>
                 <div class="comparison-icons">
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0s"
+                    >
                         <img
                             src="images (1).jpg"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0.05s"
+                    >
                         <img
                             src="images (1).png"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0.1s"
+                    >
                         <img
                             src="images (2).png"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0.15s"
+                    >
                         <img
                             src="images.jpg"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0.2s"
+                    >
                         <img
                             src="images.png"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
-                    <div class="comp-icon">
+                    <div
+                        class="comp-icon reveal-pop"
+                        data-reveal
+                        style="transition-delay: 0.25s"
+                    >
                         <img
                             src="unnamed.png"
-                            alt="Other app"
-                            width="66"
-                            height="66"
+                            alt="Other Chinese-learning app"
+                            width="64"
+                            height="64"
                         />
                     </div>
                 </div>
-                <div class="comparison-arrows">
+                <div class="comparison-arrows" data-reveal>
                     <svg
                         viewBox="0 0 500 70"
                         fill="none"
@@ -1197,6 +1400,7 @@
                         stroke-width="2.5"
                         stroke-linecap="round"
                         stroke-linejoin="round"
+                        aria-hidden="true"
                     >
                         <path d="M42 0 Q42 38 250 65" />
                         <path d="M125 0 Q130 38 250 65" />
@@ -1206,46 +1410,53 @@
                         <path d="M458 0 Q458 38 250 65" />
                     </svg>
                 </div>
-                <div class="comparison-center-arrow">
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <line x1="12" y1="3" x2="12" y2="19" />
-                        <polyline points="5 13 12 21 19 13" />
-                    </svg>
-                </div>
-                <div class="comparison-orange">
+                <div
+                    class="comparison-orange reveal-pop"
+                    data-reveal
+                    style="transition-delay: 0.3s"
+                >
                     <img
                         class="comparison-orange-icon"
                         src="orangechaticon (1) (1).png"
                         alt="Orange App Icon"
-                        width="120"
-                        height="120"
+                        width="150"
+                        height="150"
                     />
                 </div>
-                <p class="comparison-sub">
-                    …Orange combines them all into <strong>one</strong>.
+                <p
+                    class="comparison-sub reveal-up"
+                    data-reveal
+                    style="transition-delay: 0.45s"
+                >
+                    Orange replaces <em>the whole stack.</em>
                 </p>
             </div>
         </section>
 
         <!-- FEATURES GRID -->
-        <section class="features">
+        <section class="features" id="features">
             <div class="features-container">
                 <div class="features-header">
-                    <p class="section-label">Everything you need</p>
-                    <h2 class="section-title">
-                        One app.<br /><em>All the tools.</em>
+                    <p class="section-label reveal-up" data-reveal
+                        >02 — The toolkit</p
+                    >
+                    <h2 class="display" data-reveal>
+                        <span class="line-mask"
+                            ><span class="line-inner"
+                                >Everything you need.</span
+                            ></span
+                        >
+                        <span class="line-mask"
+                            ><span class="line-inner accent"
+                                >All in one place.</span
+                            ></span
+                        >
                     </h2>
                 </div>
                 <div class="features-grid">
                     <!-- AI Tutor -->
-                    <div class="feature-card">
+                    <div class="feature-card" data-reveal>
+                        <span class="feature-num">01</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1265,14 +1476,19 @@
                         </div>
                         <h3>AI Tutor</h3>
                         <p>
-                            Get instant grammar help, pronunciation coaching,
-                            and full conversation practice — a native-level AI
-                            tutor available 24/7.
+                            Grammar answers, pronunciation coaching and real
+                            conversation practice. A native-level tutor, on
+                            call 24/7.
                         </p>
                     </div>
 
                     <!-- Stroke Order -->
-                    <div class="feature-card">
+                    <div
+                        class="feature-card"
+                        data-reveal
+                        style="transition-delay: 0.06s"
+                    >
+                        <span class="feature-num">02</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1291,14 +1507,18 @@
                         </div>
                         <h3>Stroke Order</h3>
                         <p>
-                            Animated guides for every character. Practice stroke
-                            sequence, tones, and meaning — never write a
-                            character wrong again.
+                            Animated guides for every character, so you write
+                            it right the first time — and every time after.
                         </p>
                     </div>
 
                     <!-- Smart Flashcards -->
-                    <div class="feature-card">
+                    <div
+                        class="feature-card"
+                        data-reveal
+                        style="transition-delay: 0.12s"
+                    >
+                        <span class="feature-num">03</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1316,14 +1536,18 @@
                         </div>
                         <h3>Smart Flashcards</h3>
                         <p>
-                            Spaced repetition schedules reviews at the exact
-                            moment you're about to forget — study less, retain
-                            more, forever.
+                            Spaced repetition catches words right before you
+                            forget them. Study less. Remember more.
                         </p>
                     </div>
 
                     <!-- Photo Reader -->
-                    <div class="feature-card">
+                    <div
+                        class="feature-card"
+                        data-reveal
+                        style="transition-delay: 0.18s"
+                    >
+                        <span class="feature-num">04</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1342,14 +1566,19 @@
                         </div>
                         <h3>Photo Reader</h3>
                         <p>
-                            Point your camera at any Chinese text — menus,
-                            signs, textbooks. Orange reads it instantly and adds
-                            vocab to your deck.
+                            Point your camera at menus, signs or textbooks.
+                            Orange reads the Chinese and files new words
+                            straight to your deck.
                         </p>
                     </div>
 
                     <!-- Listening Tracker -->
-                    <div class="feature-card">
+                    <div
+                        class="feature-card"
+                        data-reveal
+                        style="transition-delay: 0.24s"
+                    >
+                        <span class="feature-num">05</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1368,14 +1597,18 @@
                         </div>
                         <h3>Listening Tracker</h3>
                         <p>
-                            Track your daily Chinese listening time
-                            automatically. Build real immersion habits and watch
-                            your progress grow week by week.
+                            Your daily listening time, tracked automatically.
+                            Watch real immersion habits stack up week by week.
                         </p>
                     </div>
 
                     <!-- HSK Decks -->
-                    <div class="feature-card">
+                    <div
+                        class="feature-card"
+                        data-reveal
+                        style="transition-delay: 0.3s"
+                    >
+                        <span class="feature-num">06</span>
                         <div class="feature-icon">
                             <svg
                                 viewBox="0 0 24 24"
@@ -1394,9 +1627,9 @@
                         </div>
                         <h3>HSK 1–6 Included</h3>
                         <p>
-                            Jump in immediately with ready-to-study decks for
-                            all six HSK levels and 3,000+ built-in flashcards —
-                            no setup needed.
+                            Ready-made decks for every HSK level and 3,000+
+                            built-in flashcards. Open the app and start
+                            studying.
                         </p>
                     </div>
                 </div>
@@ -1404,40 +1637,105 @@
         </section>
 
         <!-- WHO IT'S FOR -->
-        <section class="who">
+        <section class="who" id="who">
             <div class="who-container">
-                <p class="section-label" style="color: var(--orange-light)">
-                    Who it's for
-                </p>
-                <h2 class="section-title">
-                    Built for every kind<br />of Chinese learner.
+                <p class="section-label reveal-up" data-reveal
+                    >03 — Who it's for</p
+                >
+                <h2 class="display" data-reveal>
+                    <span class="line-mask"
+                        ><span class="line-inner"
+                            >Made for all levels</span
+                        ></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner accent"
+                            >your pocket chinese toolkit.</span
+                        ></span
+                    >
                 </h2>
-                <p class="who-sub">
-                    Whether you're picking up your first characters or preparing
-                    for an HSK 6 exam — Orange meets you exactly where you are.
+                <p
+                    class="who-sub reveal-up"
+                    data-reveal
+                    style="transition-delay: 0.12s"
+                >
+                    First character or HSK 6 prep — Orange meets you exactly
+                    where you are.
                 </p>
                 <div class="who-pills">
-                    <span class="who-pill">HSK Test Takers</span>
-                    <span class="who-pill">Self-Study Learners</span>
-                    <span class="who-pill">University Students</span>
-                    <span class="who-pill">Complete Beginners</span>
-                    <span class="who-pill">Advanced Speakers</span>
+                    <span class="who-pill" data-reveal
+                        >HSK Test Takers</span
+                    >
+                    <span
+                        class="who-pill"
+                        data-reveal
+                        style="transition-delay: 0.06s"
+                        >Self-Study Learners</span
+                    >
+                    <span
+                        class="who-pill"
+                        data-reveal
+                        style="transition-delay: 0.12s"
+                        >University Students</span
+                    >
+                    <span
+                        class="who-pill"
+                        data-reveal
+                        style="transition-delay: 0.18s"
+                        >Complete Beginners</span
+                    >
+                    <span
+                        class="who-pill"
+                        data-reveal
+                        style="transition-delay: 0.24s"
+                        >Advanced Speakers</span
+                    >
                 </div>
             </div>
         </section>
 
         <!-- FINAL CTA -->
-        <div class="cta-section">
-            <div class="cta-final">
-                <h2>Ready to stop juggling<br />and start learning?</h2>
-                <p>
-                    Download Orange free today. Your first lesson is just one
-                    tap away.
+        <section class="cta-section" id="cta">
+            <div
+                class="cta-shape cta-circle"
+                data-speed="-0.1"
+                aria-hidden="true"
+            ></div>
+            <div
+                class="cta-shape cta-hanzi"
+                data-speed="0.08"
+                aria-hidden="true"
+            >
+                橙
+            </div>
+            <div class="cta-inner">
+                <h2 class="display" data-reveal>
+                    <span class="line-mask"
+                        ><span class="line-inner"
+                            >Reaching fluency</span
+                        ></span
+                    >
+                    <span class="line-mask"
+                        ><span class="line-inner accent"
+                            >is one tap away.</span
+                        ></span
+                    >
+                </h2>
+                <p
+                    class="cta-sub reveal-up"
+                    data-reveal
+                    style="transition-delay: 0.1s"
+                >
+                    Stop juggling. Start speaking. Free on iOS and Android.
                 </p>
-                <div class="cta-btns">
+                <div
+                    class="cta-btns reveal-up"
+                    data-reveal
+                    style="transition-delay: 0.2s"
+                >
                     <a
                         href="https://apps.apple.com/us/app/orange-chinese-study-tools/id6763706109"
-                        class="btn-cta btn-cta-white"
+                        class="btn btn-ink"
                         target="_blank"
                         rel="noopener"
                     >
@@ -1450,14 +1748,14 @@
                                 d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
                             />
                         </svg>
-                        <div class="btn-store-text">
+                        <span class="btn-store-text">
                             <small>Download on the</small>
                             <strong>App Store</strong>
-                        </div>
+                        </span>
                     </a>
                     <a
                         href="https://play.google.com/store/apps/details?id=com.orangestudychinese.app"
-                        class="btn-cta btn-cta-dark"
+                        class="btn btn-ghost"
                         target="_blank"
                         rel="noopener"
                     >
@@ -1470,20 +1768,24 @@
                                 d="M3.18 23.76c.3.17.64.22.98.15l12.08-6.98-2.61-2.61-10.45 9.44zm-1.76-19.1c-.24.3-.38.73-.38 1.28v14.12c0 .55.14.98.39 1.28l.07.06 7.91-7.91v-.19L1.35 4.6l-.06.06h.13zm17.54 7.87l-2.21-1.28-2.93 2.93 2.93 2.93 2.23-1.28c.63-.37.63-.96 0-1.3h-.02zM4.16.22L16.25 7.2l-2.61 2.61L3.18.39A1.07 1.07 0 014.16.22z"
                             />
                         </svg>
-                        <div class="btn-store-text">
+                        <span class="btn-store-text">
                             <small>Get it on</small>
                             <strong>Google Play</strong>
-                        </div>
+                        </span>
                     </a>
                 </div>
-                <p class="cta-free">
-                    Free to download · Available on iOS & Android
+                <p
+                    class="cta-free reveal-up"
+                    data-reveal
+                    style="transition-delay: 0.3s"
+                >
+                    Free to download · iOS &amp; Android
                 </p>
             </div>
-        </div>
+        </section>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="reveal-up" data-reveal>
             <div class="footer-logo-wrap">
                 <img
                     class="footer-logo-img"
@@ -1492,10 +1794,10 @@
                     width="28"
                     height="28"
                 />
-                <span class="footer-logo-text">orange</span>
+                <span class="footer-logo-text">orange<span>.</span></span>
             </div>
             <p class="footer-tagline">
-                Stop juggling 5 apps. Learn Chinese in one.
+                One app for Chinese. Stop juggling, start speaking.
             </p>
             <div class="footer-links">
                 <a
@@ -1520,37 +1822,80 @@
             const ua = navigator.userAgent || "";
             const isIOS = /iPad|iPhone|iPod/.test(ua);
             const isAndroid = /Android/.test(ua);
-            if (isIOS)
+            if (isIOS) {
                 document
                     .getElementById("btn-ios")
                     ?.classList.add("btn-highlighted");
-            else if (isAndroid)
+            } else if (isAndroid) {
                 document
                     .getElementById("btn-android")
                     ?.classList.add("btn-highlighted");
+            }
 
-            // ── Scroll reveal for feature cards ──
-            const cards = document.querySelectorAll(".feature-card");
+            // ── Reversible scroll reveals: play forward on enter, in reverse on exit ──
+            const revealEls = document.querySelectorAll("[data-reveal]");
             if ("IntersectionObserver" in window) {
                 const obs = new IntersectionObserver(
                     (entries) => {
-                        entries.forEach((e, i) => {
-                            if (e.isIntersecting) {
-                                setTimeout(() => {
-                                    e.target.style.transition =
-                                        "opacity 0.6s ease, transform 0.6s ease";
-                                    e.target.classList.add("visible");
-                                }, i * 80);
-                                obs.unobserve(e.target);
-                            }
+                        entries.forEach((entry) => {
+                            entry.target.classList.toggle(
+                                "in",
+                                entry.isIntersecting,
+                            );
                         });
                     },
-                    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+                    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
                 );
-                cards.forEach((c) => obs.observe(c));
+                revealEls.forEach((el) => obs.observe(el));
             } else {
-                // Fallback for browsers without IntersectionObserver
-                cards.forEach((c) => c.classList.add("visible"));
+                revealEls.forEach((el) => el.classList.add("in"));
+            }
+
+            // ── Parallax decorations (skipped for reduced motion) ──
+            const parallaxEls = document.querySelectorAll("[data-speed]");
+            const reduced = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            );
+            let ticking = false;
+
+            function updateParallax() {
+                ticking = false;
+                const vh = window.innerHeight;
+                parallaxEls.forEach((el) => {
+                    const host = el.parentElement.getBoundingClientRect();
+                    const delta = host.top + host.height / 2 - vh / 2;
+                    const speed = parseFloat(el.dataset.speed);
+                    el.style.transform =
+                        "translate3d(0," +
+                        (delta * speed).toFixed(1) +
+                        "px,0)";
+                });
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(updateParallax);
+                }
+            }
+
+            function bindParallax() {
+                if (reduced.matches) {
+                    window.removeEventListener("scroll", onScroll);
+                    parallaxEls.forEach((el) => (el.style.transform = ""));
+                } else {
+                    window.addEventListener("scroll", onScroll, {
+                        passive: true,
+                    });
+                    updateParallax();
+                }
+            }
+
+            if (parallaxEls.length > 0) {
+                bindParallax();
+                if (typeof reduced.addEventListener === "function") {
+                    reduced.addEventListener("change", bindParallax);
+                }
             }
         </script>
     </body>
